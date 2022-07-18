@@ -18,8 +18,6 @@
 	</modules>
 
     <properties>
-        <revision>${project.version}</revision>
-
         <java.version>11</java.version>
         <spring-boot.version>2.7.2-SNAPSHOT</spring-boot.version>
 
