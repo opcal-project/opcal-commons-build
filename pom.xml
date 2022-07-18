@@ -14,11 +14,10 @@
 
     <modules>
         <module>opcal-commons-build-tools</module>
-    </modules>
+		<module>opcal-commons-build-dependencies-parent</module>
+	</modules>
 
     <properties>
-        <revision>${project.version}</revision>
-
         <java.version>11</java.version>
         <spring-boot.version>2.6.10-SNAPSHOT</spring-boot.version>
 
