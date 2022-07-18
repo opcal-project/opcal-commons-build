@@ -11,6 +11,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>opcal-commons-build-dependencies-parent</artifactId>
+	<packaging>pom</packaging>
 
 	<build>
 		<pluginManagement>
