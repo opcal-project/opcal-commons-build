@@ -255,6 +255,15 @@
                     <artifactId>flatten-maven-plugin</artifactId>
                     <version>${flatten-maven-plugin.version}</version>
                     <inherited>true</inherited>
+                    <configuration>
+                        <updatePomFile>true</updatePomFile>
+                        <flattenMode>oss</flattenMode>
+                        <pomElements>
+                            <parent>expand</parent>
+                            <distributionManagement>remove</distributionManagement>
+                            <repositories>remove</repositories>
+                        </pomElements>
+                    </configuration>
                     <executions>
                         <execution>
                             <id>flatten</id>
@@ -262,15 +271,13 @@
                             <goals>
                                 <goal>flatten</goal>
                             </goals>
-							<configuration>
-								<updatePomFile>true</updatePomFile>
-								<flattenMode>bom</flattenMode>
-								<pomElements>
-									<parent>expand</parent>
-									<distributionManagement>remove</distributionManagement>
-									<repositories>remove</repositories>
-								</pomElements>
-							</configuration>
+                        </execution>
+                        <execution>
+                            <id>flatten.clean</id>
+                            <phase>clean</phase>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
                         </execution>
                     </executions>
                 </plugin>
