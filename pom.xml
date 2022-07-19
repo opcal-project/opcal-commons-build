@@ -257,7 +257,7 @@
                     <inherited>true</inherited>
                     <configuration>
                         <updatePomFile>true</updatePomFile>
-                        <flattenMode>oss</flattenMode>
+                        <flattenMode>bom</flattenMode>
                         <pomElements>
                             <parent>expand</parent>
                             <distributionManagement>remove</distributionManagement>
