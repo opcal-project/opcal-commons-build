@@ -256,7 +256,7 @@
                     <version>${flatten-maven-plugin.version}</version>
                     <configuration>
                         <updatePomFile>true</updatePomFile>
-                        <flattenMode>bom</flattenMode>
+                        <flattenMode>oss</flattenMode>
                         <pomElements>
                             <parent>expand</parent>
                             <distributionManagement>remove</distributionManagement>
