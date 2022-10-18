@@ -32,6 +32,11 @@ cache:
     
 test:
   <<: *test-templete
+  except:
+    refs:
+      - "/^*.release$/"
+    changes:
+      - "*.md"
 
 test-tags:
   <<: *test-templete
@@ -45,6 +50,8 @@ deploy-snapshot:
   except:
     refs:
      - "/^*.release$/"
+    changes:
+      - "*.md"
 
       
 deploy-release :
