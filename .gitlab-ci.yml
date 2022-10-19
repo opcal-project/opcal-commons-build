@@ -32,6 +32,8 @@ cache:
     
 test:
   <<: *test-templete
+  variables:
+    - MAVEN_OPTS: "-Dmaven.repo.local=~/.m2/repository"
   except:
     refs:
       - "/^*.release$/"
@@ -47,6 +49,8 @@ test-tags:
 
 deploy-snapshot:
   <<: *deploy-template
+  variables:
+    - MAVEN_OPTS: "-Dmaven.repo.local=~/.m2/repository"
   script:
     - ./mvnw -U clean $MAVEN_CLI_OPTS deploy -Dgpg.passphrase=${GPG_PASSPHRASE} -Dmaven.test.skip=true -s settings.xml
   except:
