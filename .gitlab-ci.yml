@@ -37,6 +37,8 @@ test:
       - "/^*.release$/"
     changes:
       - "*.md"
+  tags:
+    - build
 
 test-tags:
   <<: *test-templete
@@ -52,6 +54,8 @@ deploy-snapshot:
      - "/^*.release$/"
     changes:
       - "*.md"
+  tags:
+    - build
 
       
 deploy-release :
