@@ -23,7 +23,7 @@ cache:
   script:
     - echo $MAVEN_OPTS
     - ./mvnw -U clean $MAVEN_CLI_OPTS test -Dgpg.skip=true
-    - ls -la ./
+    - ls -la /root/.m2
     - pwd ~
     - ls -la ~/.m2
     - date
