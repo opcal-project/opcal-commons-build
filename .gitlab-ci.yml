@@ -24,7 +24,9 @@ cache:
     - echo $MAVEN_OPTS
     - ./mvnw -U clean $MAVEN_CLI_OPTS test -Dgpg.skip=true
     - ls -la ./
-    - ls -la ~
+    - pwd ~
+    - ls -la ~/.m2
+    - date
 
 .deploy-template: &deploy-template
   stage: deploy
