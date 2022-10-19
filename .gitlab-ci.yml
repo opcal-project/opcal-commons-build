@@ -1,4 +1,4 @@
-image: eclipse-temurin:11-jdk-jammy
+image: eclipse-temurin:11-jdk
 
 stages:
   - test
@@ -21,6 +21,7 @@ cache:
 .test-templete : &test-templete
   stage: test
   script:
+    - echo $MAVEN_OPTS
     - ./mvnw -U clean $MAVEN_CLI_OPTS test -Dgpg.skip=true
 
 .deploy-template: &deploy-template
