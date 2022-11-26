@@ -5,7 +5,5 @@ SCRIPT_DIR_PATH=`dirname ${SCRIPT}`
 CI_DIR_PATH=`dirname ${SCRIPT_DIR_PATH}`
 ROOT_PATH=`dirname ${CI_DIR_PATH}`
 
-rm -f ${ROOT_PATH}/.flattened-pom.xml
-rm -f ${ROOT_PATH}/pom.xml.versionsBackup
-rm -f ${ROOT_PATH}/**/.flattened-pom.xml
-rm -f ${ROOT_PATH}/**/pom.xml.versionsBackup
+find ${ROOT_PATH}/ -type f -iname '.flattened-pom.xml' | xargs -I {} rm -f {};
+find ${ROOT_PATH}/ -type f -iname 'pom.xml.versionsBackup' | xargs -I {} rm -f {};
