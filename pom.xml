@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>xyz.opcal.build</groupId>
     <artifactId>opcal-commons-build</artifactId>
-    <version>3.0.5-SNAPSHOT</version>
+    <version>3.0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>opcal project parent</name>
 
