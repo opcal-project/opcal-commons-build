@@ -48,7 +48,6 @@
 						<parent>expand</parent>
 						<pluginManagement>keep</pluginManagement>
 						<distributionManagement>remove</distributionManagement>
-						<repositories>remove</repositories>
 						<profiles>keep</profiles>
 					</pomElements>
 				</configuration>
