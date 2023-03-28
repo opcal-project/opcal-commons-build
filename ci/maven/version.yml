@@ -1,5 +1,5 @@
-dependencies: /workspace/opcal-cloud-commons-updates/opcal-commons-build/dependencies.properties
-update-report: /workspace/opcal-cloud-commons-updates/opcal-commons-build/target/site/property-updates-report.html
+dependencies: /root/workspace/opcal-commons-build-updates/opcal-commons-build/dependencies.properties
+update-report: /root/workspace/opcal-commons-build-updates/opcal-commons-build/target/site/property-updates-report.html
 version-registers:
   - property-name: spring-boot.version
     update-policy: SNAPSHOT
