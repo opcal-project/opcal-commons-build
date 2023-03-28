@@ -14,7 +14,7 @@ echo "current version is [${CURRENT_VERSION}]"
 
 NUMS=($(echo "${VERSION_NUMBER}" | tr '.' '\n'))
 
-NEXT_VERSION=CURRENT_VERSION
+NEXT_VERSION=${CURRENT_VERSION}
 
 if [ "${NEXT_DIRECTION}" = "-s" ];then
   s_version=$(echo ${NUMS[2]} + 1 | bc)
