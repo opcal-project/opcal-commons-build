@@ -1,0 +1,6 @@
+dependencies: #{#ROOT_PATH}/ci/maven/plugins/plugins.properties
+update-reports:
+  - #{#ROOT_PATH}/target/site/property-updates-report.html
+version-registers:
+  - property-name: spring-boot.version
+    update-policy: SNAPSHOT
