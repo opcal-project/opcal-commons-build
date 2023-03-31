@@ -1,0 +1,48 @@
+dependencies: #{#ROOT_PATH}/ci/maven/plugins/plugins.properties
+update-reports:
+  - #{#ROOT_PATH}/target/site/property-updates-report.html
+version-registers:
+  - property-name: maven-compiler-plugin.version
+    update-policy: LATEST
+  - property-name: maven-release-plugin.version
+    update-policy: LATEST
+  - property-name: maven-resources-plugin.version
+    update-policy: LATEST
+  - property-name: maven-gpg-plugin.version
+    update-policy: LATEST
+  - property-name: maven-eclipse-plugin.version
+    update-policy: LATEST
+  - property-name: maven-javadoc-plugin.version
+    update-policy: LATEST
+  - property-name: maven-source-plugin.version
+    update-policy: LATEST
+  - property-name: maven-surefire-plugin.version
+    update-policy: LATEST
+  - property-name: maven-failsafe-plugin.version
+    update-policy: LATEST
+  - property-name: maven-jar-plugin.version
+    update-policy: LATEST
+  - property-name: maven-antrun-plugin.version
+    update-policy: LATEST
+  - property-name: maven-war-plugin.version
+    update-policy: LATEST
+  - property-name: maven-checkstyle-plugin.version
+    update-policy: LATEST
+  - property-name: maven-enforcer-plugin.version
+    update-policy: LATEST
+  - property-name: nohttp-checkstyle.version
+    update-policy: LATEST
+  - property-name: puppycrawl-tools-checkstyle.version
+    update-policy: LATEST
+  - property-name: spring-javaformat-checkstyle.version
+    update-policy: LATEST
+  - property-name: spring-javaformat.version
+    update-policy: LATEST
+  - property-name: versions-maven-plugin.version
+    update-policy: LATEST
+  - property-name: flatten-maven-plugin.version
+    update-policy: LATEST
+  - property-name: jacoco-maven-plugin.version
+    update-policy: LATEST
+  - property-name: exec-maven-plugin.version
+    update-policy: LATEST
