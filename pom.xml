@@ -263,7 +263,7 @@
 								</goals>
 								<configuration>
 									<files>
-										<file>${project.basedir}/sonar-project.properties</file>
+										<file>${session.executionRootDirectory}/sonar-project.properties</file>
 									</files>
 								</configuration>
 							</execution>
