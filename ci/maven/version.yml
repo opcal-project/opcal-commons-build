@@ -49,3 +49,5 @@ version-registers:
     update-policy: LATEST
   - property-name: exec-maven-plugin.version
     update-policy: LATEST
+  - property-name: properties-maven-plugin.version
+    update-policy: LATEST
