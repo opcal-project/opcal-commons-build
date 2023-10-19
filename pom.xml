@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>xyz.opcal.build</groupId>
 	<artifactId>opcal-commons-build</artifactId>
-	<version>3.0.12-SNAPSHOT</version>
+	<version>3.0.13-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>opcal project parent</name>
 
@@ -21,7 +21,7 @@
 		<java.version>17</java.version>
 
 		<!-- dependency version -->
-		<spring-boot.version>3.0.12</spring-boot.version>
+		<spring-boot.version>3.0.13-SNAPSHOT</spring-boot.version>
 		<jakarta-cdi-api.version>4.0.1</jakarta-cdi-api.version>
 		<jakarta-inject-api.version>2.0.1</jakarta-inject-api.version>
 		<jakarta-annotation-api.version>2.1.1</jakarta-annotation-api.version>
