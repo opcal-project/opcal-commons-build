@@ -77,7 +77,7 @@
 		<jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
 		<exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
 		<properties-maven-plugin.version>1.2.1</properties-maven-plugin.version>
-		<ossindex-maven-plugin.version>3.1.0</ossindex-maven-plugin.version>
+		<ossindex-maven-plugin.version>3.2.0</ossindex-maven-plugin.version>
 	</properties>
 
 	<dependencyManagement>
