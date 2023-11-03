@@ -51,3 +51,5 @@ version-registers:
     update-policy: LATEST
   - property-name: properties-maven-plugin.version
     update-policy: LATEST
+  - property-name: ossindex-maven-plugin.version
+    update-policy: LATEST
