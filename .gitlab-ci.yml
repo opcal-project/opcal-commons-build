@@ -22,6 +22,7 @@ cache:
   stage: test
   script:
     - ./mvnw -U clean $MAVEN_CLI_OPTS test -Dgpg.skip=true
+    - ./mvnw ossindex:audit
 
 .deploy-template: &deploy-template
   stage: deploy
