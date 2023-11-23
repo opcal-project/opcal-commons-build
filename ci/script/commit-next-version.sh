@@ -12,8 +12,8 @@ DEPENDENCIES_FILE=${ROOT_PATH}/dependencies.properties
 # tag release
 RELEASE_VERSION=$(${ROOT_PATH}/mvnw help:evaluate -Dexpression=project.version | grep "^[^\\[]" |grep -v Download |grep -v Progress | cut -d '-' -f 1)
 TAG_NAME=${RELEASE_VERSION}.release
-git tag -a ${TAG_NAME} -m "Release Tag ${RELEASE_VERSION}"
-git push origin ${TAG_NAME}
+#git tag -a ${TAG_NAME} -m "Release Tag ${RELEASE_VERSION}"
+#git push origin ${TAG_NAME}
 
 # next version
 ${SCRIPT_DIR_PATH}/next-version.sh -${VERSION_DIRECTION:-s}
