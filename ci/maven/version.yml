@@ -3,7 +3,8 @@ update-reports:
   - #{#WORKSPACE}/target/site/property-updates-aggregate-report.html
 version-registers:
   - property-name: spring-boot.version
-    update-policy: SNAPSHOT
+    update-policy: INCREMENTAL
+    allow-snapshot: true
     # plugins
   - property-name: maven-compiler-plugin.version
     update-policy: LATEST

@@ -12,15 +12,18 @@ DEPENDENCIES_FILE=${ROOT_PATH}/dependencies.properties
 # tag release
 RELEASE_VERSION=$(${ROOT_PATH}/mvnw help:evaluate -Dexpression=project.version | grep "^[^\\[]" |grep -v Download |grep -v Progress | cut -d '-' -f 1)
 TAG_NAME=${RELEASE_VERSION}.release
-git tag -a ${TAG_NAME} -m "Release Tag ${RELEASE_VERSION}"
-git push origin ${TAG_NAME}
+#git tag -a ${TAG_NAME} -m "Release Tag ${RELEASE_VERSION}"
+#git push origin ${TAG_NAME}
 
 # next version
 ${SCRIPT_DIR_PATH}/next-version.sh -${VERSION_DIRECTION:-s}
 
 NEXT_DEVELOPMENT_VERSION=$(cat /tmp/NEXT_DEVELOPMENT_VERSION)
 
-props set ${DEPENDENCIES_FILE} spring-boot.version ${NEXT_DEVELOPMENT_VERSION}
+${ROOT_PATH}/mvnw clean compile versions:property-updates-aggregate-report -DallowSnapshots=true
+
+export WORKSPACE=${ROOT_PATH}
+versions check ${ROOT_PATH}/ci/maven/version.yml
 
 ${SCRIPT_DIR_PATH}/dependency-version.sh
 
