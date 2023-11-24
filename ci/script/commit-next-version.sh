@@ -20,7 +20,10 @@ ${SCRIPT_DIR_PATH}/next-version.sh -${VERSION_DIRECTION:-s}
 
 NEXT_DEVELOPMENT_VERSION=$(cat /tmp/NEXT_DEVELOPMENT_VERSION)
 
-props set ${DEPENDENCIES_FILE} spring-boot.version ${NEXT_DEVELOPMENT_VERSION}
+${ROOT_PATH}/mvnw clean compile versions:property-updates-aggregate-report -DallowSnapshots=true
+
+export WORKSPACE=${ROOT_PATH}
+versions check ${ROOT_PATH}/ci/maven/version.yml
 
 ${SCRIPT_DIR_PATH}/dependency-version.sh
 
