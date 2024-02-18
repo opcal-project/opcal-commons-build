@@ -21,7 +21,8 @@ cache:
   stage: test
   before_script:
     - |
-      if [ $MAVEN_DEBUG == "true" ]; then
+      echo ${MAVEN_DEBUG}
+      if [ ${MAVEN_DEBUG} == "true" ]; then
         export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
       fi
   script:
