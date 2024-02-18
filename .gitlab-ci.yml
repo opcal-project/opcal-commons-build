@@ -19,13 +19,11 @@ cache:
 
 .test-templete : &test-templete
   stage: test
-  before_script:
-    - |
-      echo ${MAVEN_DEBUG}
-      if [ ${MAVEN_DEBUG} == "true" ]; then
-        export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
-      fi
   script:
+    - |
+        if [ ${MAVEN_DEBUG} == "true" ]; then
+          export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
+        fi
     - echo ${MAVEN_CLI_OPTS}
     - ./mvnw -U clean $MAVEN_CLI_OPTS test -Dgpg.skip=true
     - ./mvnw ossindex:audit
