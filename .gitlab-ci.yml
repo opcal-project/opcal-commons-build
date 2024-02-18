@@ -24,7 +24,6 @@ cache:
         if [ ${MAVEN_DEBUG} == "true" ]; then
           export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
         fi
-    - echo ${MAVEN_CLI_OPTS}
     - ./mvnw -U clean $MAVEN_CLI_OPTS test -Dgpg.skip=true
     - ./mvnw ossindex:audit
 
@@ -34,6 +33,10 @@ cache:
     - apt-get update && apt-get install -y gnupg2
     - export GPG_TTY=$(tty)
     - echo "${GPG_PRI}" | gpg --batch --import
+    - |
+      if [ ${MAVEN_DEBUG} == "true" ]; then
+        export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
+      fi
     
 test:
   <<: *test-templete
