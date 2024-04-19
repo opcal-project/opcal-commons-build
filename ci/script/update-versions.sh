@@ -5,17 +5,17 @@
 
 set -e
 
-SCRIPT=`readlink -f "${BASH_SOURCE:-$0}"`
-SCRIPT_DIR_PATH=`dirname ${SCRIPT}`
-CI_DIR_PATH=`dirname ${SCRIPT_DIR_PATH}`
-ROOT_PATH=`dirname ${CI_DIR_PATH}`
+SCRIPT=$(readlink -f "${BASH_SOURCE:-$0}")
+SCRIPT_DIR_PATH=$(dirname "${SCRIPT}")
+CI_DIR_PATH=$(dirname "${SCRIPT_DIR_PATH}")
+ROOT_PATH=$(dirname "${CI_DIR_PATH}")
 
 UPDATE_FLAG=/tmp/versionUpdate
 
 if [ -f "${UPDATE_FLAG}" ];then
 
   echo "update versions"
-  ${SCRIPT_DIR_PATH}/dependency-version.sh
+  "${SCRIPT_DIR_PATH}"/dependency-version.sh
 
   message=$(cat ${UPDATE_FLAG})
   git add .
