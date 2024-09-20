@@ -456,7 +456,7 @@
                         <dependency>
                             <groupId>xyz.opcal.build</groupId>
                             <artifactId>opcal-commons-build-tools</artifactId>
-                            <version>${revision}</version>
+                            <version>${project.version}</version>
                         </dependency>
                         <dependency>
                             <groupId>io.spring.nohttp</groupId>
