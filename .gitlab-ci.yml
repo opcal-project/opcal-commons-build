@@ -1,8 +1,7 @@
 image: eclipse-temurin:17-jdk
 
 stages:
-  - test
-  - deploy
+  - build
 
 variables:
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
@@ -27,8 +26,8 @@ cache:
     - ./mvnw -U clean $MAVEN_CLI_OPTS test -Dgpg.skip=true
     - ./mvnw ossindex:audit
 
-.deploy-template: &deploy-template
-  stage: deploy
+.build-template: &build-template
+  stage: build
   before_script:
     - apt-get update && apt-get install -y gnupg2
     - export GPG_TTY=$(tty)
@@ -37,36 +36,16 @@ cache:
       if [ ${MAVEN_DEBUG} == "true" ]; then
         export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
       fi
-    
-test:
-  <<: *test-templete
-  variables:
-    MAVEN_OPTS: "-Dmaven.repo.local=/root/.m2/repository"
-    SONAR_USER_HOME: "/root/.sonar/${CI_PROJECT_NAME}"
-  before_script:
-    - mkdir -p ${SONAR_USER_HOME}
-  tags:
-    - build
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "push"
-      changes:
-        - "*.md"
-      when: never
-    - if: $CI_PIPELINE_SOURCE == "push"
-    - if: $CI_PIPELINE_SOURCE == "web"
-
-test-tags:
-  <<: *test-templete
-  only:
-    - tags
-
-deploy-snapshot:
-  <<: *deploy-template
-  variables:
-    MAVEN_OPTS: "-Dmaven.repo.local=/root/.m2/repository"
-    SONAR_USER_HOME: "/root/.sonar/${CI_PROJECT_NAME}"
   script:
-    - ./mvnw -U clean $MAVEN_CLI_OPTS deploy -Dgpg.passphrase=${GPG_PASSPHRASE} -Dmaven.test.skip=true -s settings.xml
+    - ./mvnw -U clean $MAVEN_CLI_OPTS deploy -Dgpg.passphrase=${GPG_PASSPHRASE} -s settings.xml
+    - ./mvnw ossindex:audit
+
+
+build-snapshot:
+  variables:
+    MAVEN_OPTS: "-Dmaven.repo.local=/root/.m2/repository"
+    SONAR_USER_HOME: "/root/.sonar/${CI_PROJECT_NAME}"
+  <<: *build-template
   tags:
     - build
   rules:
@@ -80,13 +59,8 @@ deploy-snapshot:
     - if: $CI_PIPELINE_SOURCE == "web"
 
       
-deploy-release :
-  <<: *deploy-template
-  script:
-    - SNAPSHOT_VERSION=$(./mvnw help:evaluate -Dexpression=project.version | grep "^[^\\[]" |grep -v Download |grep -v Progress)
-    - RELEASE_VERSION=${SNAPSHOT_VERSION/-SNAPSHOT/}
-#    - ./mvnw versions:set -DnewVersion=${RELEASE_VERSION}
-    - ./mvnw -U clean $MAVEN_CLI_OPTS deploy -Dgpg.passphrase=${GPG_PASSPHRASE} -Dmaven.test.skip=true -s settings.xml
+build-release :
+  <<: *build-template
   only:
     - "/^*.release$/"
 
