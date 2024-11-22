@@ -1,6 +1,7 @@
 dependencies: #{#WORKSPACE}/dependencies.properties
 update-reports:
   - #{#WORKSPACE}/target/site/property-updates-aggregate-report.html
+  - #{#WORKSPACE}/target/reports/property-updates-aggregate-report.html
 version-registers:
   - property-name: spring-boot.version
     update-policy: INCREMENTAL
