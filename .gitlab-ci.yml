@@ -12,8 +12,8 @@ variables:
 cache:
   key: "${CI_JOB_NAME}"
   paths:
-    - .m2/repository
-    - .sonar/cache
+    - /root/.m2/repository
+    - /root/.sonar/cache
 
 
 .test-templete : &test-templete
@@ -23,6 +23,7 @@ cache:
         if [ ${MAVEN_DEBUG} == "true" ]; then
           export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
         fi
+    - echo ${CI_PROJECT_DIR}
     - ./mvnw -U clean $MAVEN_CLI_OPTS test -Dgpg.skip=true
     - ./mvnw ossindex:audit
 
