@@ -13,7 +13,7 @@ cache:
   key: "${CI_JOB_NAME}"
   paths:
     - .m2/repository
-    - .sonar/cache
+    - .sonar
 
 
 .test-templete : &test-templete
