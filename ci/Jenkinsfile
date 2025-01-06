@@ -46,7 +46,7 @@ pipeline {
                         sh 'cat ${GPG_PRI} > /tmp/signkey.gpg'
                         sh 'gpg --allow-secret-key-import --batch --import /tmp/signkey.gpg'
                         sh '''
-                            if [ ${MAVEN_DEBUG} == "true" ]; then
+                            if [ "${MAVEN_DEBUG}" == "true" ]; then
                                 export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
                             fi
                             ./mvnw -U clean $MAVEN_CLI_OPTS deploy -Dgpg.passphrase=${GPG_PASSPHRASE} -s settings.xml
@@ -55,6 +55,16 @@ pipeline {
                     }
                 }
             }
+        }
+    }
+    post {
+        always {
+            script {
+                sh 'pwd'
+                sh '/root/.m2'
+                sh '/root/.sonar'
+            }
+            cleanWs()
         }
     }
 }
