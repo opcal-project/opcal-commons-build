@@ -4,6 +4,7 @@ pipeline {
             reuseNode true
             alwaysPull true
             image 'ghcr.io/opcal/eclipse-temurin:17-jdk'
+            args '-v /root/.m2:/root/.m2 -v /root/.sonar:/root/.sonar'
         }
     }
 
@@ -39,6 +40,7 @@ pipeline {
                     withCredentials([
                             file(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'),
                             string(credentialsId: 'GPG_PASSPHRASE', variable: 'GPG_PASSPHRASE'),
+                            string(credentialsId: 'MAVEN_DEBUG', variable: 'MAVEN_DEBUG'),
                             usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U')
                     ]) {
                         sh 'cat ${GPG_PRI} > /tmp/signkey.gpg'
