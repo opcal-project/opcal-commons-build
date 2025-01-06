@@ -3,7 +3,7 @@ pipeline {
         docker {
             reuseNode true
             alwaysPull true
-            image 'eclipse-temurin:17-jdk'
+            image 'ghcr.io/opcal/eclipse-temurin:17-jdk'
         }
     }
 
@@ -13,9 +13,41 @@ pipeline {
     }
 
     stages {
-        stage('Init') {
+        stage('Validation') {
             steps {
-                 sh 'printenv'
+                script {
+                    skipCi = sh (script: "git log -1 --pretty=%B | grep '\\[skip ci\\]'", returnStatus: true)
+                    if (skipCi != 0 && env.TAG_NAME == null) {
+                        echo "pipeline build..."
+                    } else {
+                        echo "Skipping this pipeline by commit message mark!"
+                        currentBuild.result = "ABORTED"
+                        throw new org.jenkinsci.plugins.workflow.steps.FlowInterruptedException(hudson.model.Result.ABORTED)
+                    }
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                cache(caches: [
+                        arbitraryFileCache(cacheName: '', cacheValidityDecidingFile: '', compressionMethod: 'TARGZ_BEST_SPEED', excludes: '', includes: '**/*', path: '/root/.m2'),
+                        arbitraryFileCache(cacheName: '', cacheValidityDecidingFile: '', compressionMethod: 'TARGZ_BEST_SPEED', excludes: '', includes: '**/*', path: '/root/.sonar')
+                ],
+                        defaultBranch: 'main',
+                        maxCacheSize: 0) {
+//                    sh 'printenv'
+                    withCredentials([string(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'), string(credentialsId: 'GPG_PASSPHRASE', variable: 'GPG_PASSPHRASE')]) {
+                        sh '''
+                            export GPG_TTY=$(tty)
+                            echo "${GPG_PRI}" | gpg --batch --import
+                            if [ ${MAVEN_DEBUG} == "true" ]; then
+                                export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
+                            fi
+                            ./mvnw -U clean $MAVEN_CLI_OPTS deploy -Dgpg.passphrase=${GPG_PASSPHRASE}
+                            ./mvnw ossindex:audit
+                        '''
+                    }
+                }
             }
         }
     }
