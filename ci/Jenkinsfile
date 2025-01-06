@@ -36,9 +36,9 @@ pipeline {
                         defaultBranch: 'main',
                         maxCacheSize: 0) {
 //                    sh 'printenv'
-                    withCredentials([string(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'), string(credentialsId: 'GPG_PASSPHRASE', variable: 'GPG_PASSPHRASE')]) {
-                        sh 'export GPG_TTY=$(tty)'
-                        sh 'echo "${GPG_PRI}" | gpg --batch --import'
+                    withCredentials([file(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'), string(credentialsId: 'GPG_PASSPHRASE', variable: 'GPG_PASSPHRASE')]) {
+                        sh 'cat ${GPG_PRI} > /tmp/signkey.gpg'
+                        sh 'gpg --allow-secret-key-import --batch --import /tmp/signkey.gpg'
                         sh '''
                             if [ ${MAVEN_DEBUG} == "true" ]; then
                                 export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
