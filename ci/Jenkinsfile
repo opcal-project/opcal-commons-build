@@ -37,9 +37,9 @@ pipeline {
                         maxCacheSize: 0) {
 //                    sh 'printenv'
                     withCredentials([string(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'), string(credentialsId: 'GPG_PASSPHRASE', variable: 'GPG_PASSPHRASE')]) {
+                        sh 'export GPG_TTY=$(tty)'
+                        sh 'echo "${GPG_PRI}" | gpg --batch --import'
                         sh '''
-                            export GPG_TTY=$(tty)
-                            echo "${GPG_PRI}" | gpg --batch --import
                             if [ ${MAVEN_DEBUG} == "true" ]; then
                                 export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
                             fi
