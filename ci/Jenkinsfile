@@ -1,0 +1,22 @@
+pipeline {
+    agent {
+        docker {
+            reuseNode true
+            alwaysPull true
+            image 'eclipse-temurin:17-jdk'
+        }
+    }
+
+    environment {
+        MAVEN_CLI_OPTS = "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
+        RELEASE_PROJECT = 'opcal-commons-build'
+    }
+
+    stages {
+        stage('Init') {
+            steps {
+                 sh 'printenv'
+            }
+        }
+    }
+}
