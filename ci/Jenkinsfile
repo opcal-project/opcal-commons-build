@@ -1,3 +1,19 @@
+/*
+ * Copyright 2020-2025 Opcal
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 pipeline {
     agent {
         kubernetes {
@@ -37,17 +53,17 @@ pipeline {
 //                        sh 'printenv'
                         withCredentials([
                                 file(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'),
-                                string(credentialsId: 'GPG_PASSPHRASE', variable: 'GPG_PASSPHRASE'),
+                                string(credentialsId: 'GPG_PASSPHRASE', variable: 'MAVEN_GPG_PASSPHRASE'),
                                 string(credentialsId: 'MAVEN_DEBUG', variable: 'MAVEN_DEBUG'),
                                 usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U')
                         ]) {
                             sh 'cat ${GPG_PRI} > /tmp/signkey.gpg'
                             sh 'gpg --allow-secret-key-import --batch --import /tmp/signkey.gpg'
                             sh '''
-                                if [ "${MAVEN_DEBUG}" == "true" ]; then
+                                if [ "\"${MAVEN_DEBUG}\"" == "\"true\"" ]; then
                                     export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
                                 fi
-                                ./mvnw -U clean $MAVEN_CLI_OPTS deploy -Dgpg.passphrase=${GPG_PASSPHRASE} -s settings.xml
+                                ./mvnw -U clean $MAVEN_CLI_OPTS deploy -s settings.xml
                                 ./mvnw ossindex:audit
                             '''
                         }
