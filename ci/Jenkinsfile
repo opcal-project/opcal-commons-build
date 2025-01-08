@@ -22,6 +22,10 @@ pipeline {
         }
     }
 
+    parameters {
+        string(name: 'MAVEN_DEBUG', defaultValue: 'false', description: 'Enable maven debug logs')
+    }
+
     environment {
         MAVEN_CLI_OPTS = "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
     }
@@ -54,13 +58,12 @@ pipeline {
                         withCredentials([
                                 file(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'),
                                 string(credentialsId: 'GPG_PASSPHRASE', variable: 'MAVEN_GPG_PASSPHRASE'),
-                                string(credentialsId: 'MAVEN_DEBUG', variable: 'MAVEN_DEBUG'),
                                 usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U')
                         ]) {
                             sh 'cat ${GPG_PRI} > /tmp/signkey.gpg'
                             sh 'gpg --allow-secret-key-import --batch --import /tmp/signkey.gpg'
                             sh '''
-                                if [ "\"${MAVEN_DEBUG}\"" == "\"true\"" ]; then
+                                if [ "${MAVEN_DEBUG}" == "true" ]; then
                                     export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
                                 fi
                                 ./mvnw -U clean $MAVEN_CLI_OPTS deploy -s settings.xml
