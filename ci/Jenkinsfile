@@ -34,7 +34,7 @@ pipeline {
                         defaultBranch: 'main',
                         maxCacheSize: 0) {
                     container("temurin-jdk-17") {
-                        sh 'printenv'
+//                        sh 'printenv'
                         withCredentials([
                                 file(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'),
                                 string(credentialsId: 'GPG_PASSPHRASE', variable: 'GPG_PASSPHRASE'),
@@ -59,6 +59,17 @@ pipeline {
     post {
         always {
             cleanWs()
+        }
+        failure {
+            withCredentials([
+                    string(credentialsId: 'ALERT_MAIL', variable: 'SEND_TO')
+            ]) {
+                emailext(
+                        to: "${SEND_TO}",
+                        subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${env.currentResult}!",
+                        body: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult}. \n\nCheck console output at ${env.BUILD_URL} to view the results."
+                )
+            }
         }
     }
 }
