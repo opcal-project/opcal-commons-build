@@ -23,7 +23,7 @@ pipeline {
     }
 
     parameters {
-        string(name: 'MAVEN_DEBUG', defaultValue: 'false', description: 'Enable maven debug logs')
+        booleanParam(name: 'MAVEN_DEBUG', defaultValue: false, description: 'Enable maven debug logs')
     }
 
     environment {
@@ -62,13 +62,11 @@ pipeline {
                         ]) {
                             sh 'cat ${GPG_PRI} > /tmp/signkey.gpg'
                             sh 'gpg --allow-secret-key-import --batch --import /tmp/signkey.gpg'
-                            sh '''
-                                if [ \\"${MAVEN_DEBUG}\\" == \\"true\\" ]; then
-                                    export MAVEN_CLI_OPTS="${MAVEN_CLI_OPTS} -e -X"
-                                fi
-                                ./mvnw -U clean $MAVEN_CLI_OPTS deploy -s settings.xml
-                                ./mvnw ossindex:audit
-                            '''
+                            if (params.MAVEN_DEBUG == true) {
+                                env.MAVEN_CLI_OPTS = "${env.MAVEN_CLI_OPTS} -e -X";
+                            }
+                            sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} deploy -s settings.xml"
+                            sh "./mvnw ossindex:audit"
                         }
                     }
                 }
