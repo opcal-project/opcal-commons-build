@@ -64,7 +64,7 @@ pipeline {
                                 sh 'cat ${GPG_PRI} > /tmp/signkey.gpg'
                                 sh 'gpg --allow-secret-key-import --batch --import /tmp/signkey.gpg'
                                 if (params.MAVEN_DEBUG == true) {
-                                    env.MAVEN_CLI_OPTS = "${env.MAVEN_CLI_OPTS} -e -X";
+                                    env.MAVEN_CLI_OPTS = "${env.MAVEN_CLI_OPTS}" + " -e -X";
                                 }
                                 sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} deploy -s settings.xml"
                                 sh "./mvnw ossindex:audit"
