@@ -60,13 +60,15 @@ pipeline {
                                 string(credentialsId: 'GPG_PASSPHRASE', variable: 'MAVEN_GPG_PASSPHRASE'),
                                 usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U')
                         ]) {
-                            sh 'cat ${GPG_PRI} > /tmp/signkey.gpg'
-                            sh 'gpg --allow-secret-key-import --batch --import /tmp/signkey.gpg'
-                            if (params.MAVEN_DEBUG == true) {
-                                env.MAVEN_CLI_OPTS = "${env.MAVEN_CLI_OPTS} -e -X";
+                            script {
+                                sh 'cat ${GPG_PRI} > /tmp/signkey.gpg'
+                                sh 'gpg --allow-secret-key-import --batch --import /tmp/signkey.gpg'
+                                if (params.MAVEN_DEBUG == true) {
+                                    env.MAVEN_CLI_OPTS = "${env.MAVEN_CLI_OPTS} -e -X";
+                                }
+                                sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} deploy -s settings.xml"
+                                sh "./mvnw ossindex:audit"
                             }
-                            sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} deploy -s settings.xml"
-                            sh "./mvnw ossindex:audit"
                         }
                     }
                 }
