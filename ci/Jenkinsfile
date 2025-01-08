@@ -63,12 +63,12 @@ pipeline {
                             script {
                                 sh 'cat ${GPG_PRI} > /tmp/signkey.gpg'
                                 sh 'gpg --allow-secret-key-import --batch --import /tmp/signkey.gpg'
-                                echo "${params.MAVEN_DEBUG}"
-                                echo "${MAVEN_DEBUG}"
                                 if (params.MAVEN_DEBUG == true) {
-                                    MAVEN_CLI_OPTS = "${env.MAVEN_CLI_OPTS}" + " -e -X";
+                                    env.MAVEN_CLI_DEBUG = " -e -X";
+                                } else {
+                                    env.MAVEN_CLI_DEBUG = "";
                                 }
-                                sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} deploy -s settings.xml"
+                                sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} ${env.MAVEN_CLI_DEBUG} deploy -s settings.xml"
                                 sh "./mvnw ossindex:audit"
                             }
                         }
