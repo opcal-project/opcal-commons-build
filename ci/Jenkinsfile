@@ -45,6 +45,7 @@ pipeline {
                             usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U')
                     ]) {
                         script {
+                            sh 'printenv'
                             sh "gpg --allow-secret-key-import --batch --import \$GPG_PRI"
                             if (params.MAVEN_DEBUG == true) {
                                 env.MAVEN_CLI_DEBUG = " -e -X";
