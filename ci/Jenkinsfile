@@ -33,35 +33,28 @@ pipeline {
         }
         stage('Build') {
             steps {
-//                cache(caches: [
-//                        arbitraryFileCache(cacheName: '', cacheValidityDecidingFile: '', compressionMethod: 'TARGZ_BEST_SPEED', excludes: '', includes: '**/*', path: '/home/jenkins/.m2'),
-//                        arbitraryFileCache(cacheName: '', cacheValidityDecidingFile: '', compressionMethod: 'TARGZ_BEST_SPEED', excludes: '', includes: '**/*', path: '/home/jenkins/.sonar')
-//                ],
-//                        defaultBranch: 'main',
-//                        maxCacheSize: 0) {
-                    withCredentials([
-                            file(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'),
-                            string(credentialsId: 'GPG_PASSPHRASE', variable: 'MAVEN_GPG_PASSPHRASE'),
-                            usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U')
-                    ]) {
-                        script {
-                            sh "gpg --allow-secret-key-import --batch --import \$GPG_PRI"
-                            if (params.MAVEN_DEBUG == true) {
-                                env.MAVEN_CLI_DEBUG = " -e -X";
-                            } else {
-                                env.MAVEN_CLI_DEBUG = "";
-                            }
-                            if (env.CHANGE_URL == null) {
-                                // non-PR build
-                                sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} ${env.MAVEN_CLI_DEBUG} deploy -s settings.xml"
-                            } else {
-                                // PR build
-                                sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} ${env.MAVEN_CLI_DEBUG} test -Dgpg.skip=true"
-                            }
-                            sh "./mvnw ossindex:audit"
+                withCredentials([
+                        file(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'),
+                        string(credentialsId: 'GPG_PASSPHRASE', variable: 'MAVEN_GPG_PASSPHRASE'),
+                        usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U')
+                ]) {
+                    script {
+                        sh "gpg --allow-secret-key-import --batch --import \$GPG_PRI"
+                        if (params.MAVEN_DEBUG == true) {
+                            env.MAVEN_CLI_DEBUG = " -e -X";
+                        } else {
+                            env.MAVEN_CLI_DEBUG = "";
                         }
+                        if (env.CHANGE_URL == null) {
+                            // non-PR build
+                            sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} ${env.MAVEN_CLI_DEBUG} deploy -s settings.xml"
+                        } else {
+                            // PR build
+                            sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} ${env.MAVEN_CLI_DEBUG} test -Dgpg.skip=true"
+                        }
+                        sh "./mvnw ossindex:audit"
                     }
-//                }
+                }
             }
         }
     }
