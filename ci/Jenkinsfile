@@ -33,19 +33,18 @@ pipeline {
         }
         stage('Build') {
             steps {
-                cache(caches: [
-                        arbitraryFileCache(cacheName: '', cacheValidityDecidingFile: '', compressionMethod: 'TARGZ_BEST_SPEED', excludes: '', includes: '**/*', path: '/root/.m2'),
-                        arbitraryFileCache(cacheName: '', cacheValidityDecidingFile: '', compressionMethod: 'TARGZ_BEST_SPEED', excludes: '', includes: '**/*', path: '/root/.sonar')
-                ],
-                        defaultBranch: 'main',
-                        maxCacheSize: 0) {
+//                cache(caches: [
+//                        arbitraryFileCache(cacheName: '', cacheValidityDecidingFile: '', compressionMethod: 'TARGZ_BEST_SPEED', excludes: '', includes: '**/*', path: '/home/jenkins/.m2'),
+//                        arbitraryFileCache(cacheName: '', cacheValidityDecidingFile: '', compressionMethod: 'TARGZ_BEST_SPEED', excludes: '', includes: '**/*', path: '/home/jenkins/.sonar')
+//                ],
+//                        defaultBranch: 'main',
+//                        maxCacheSize: 0) {
                     withCredentials([
                             file(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'),
                             string(credentialsId: 'GPG_PASSPHRASE', variable: 'MAVEN_GPG_PASSPHRASE'),
                             usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U')
                     ]) {
                         script {
-                            sh 'printenv'
                             sh "gpg --allow-secret-key-import --batch --import \$GPG_PRI"
                             if (params.MAVEN_DEBUG == true) {
                                 env.MAVEN_CLI_DEBUG = " -e -X";
@@ -62,7 +61,7 @@ pipeline {
                             sh "./mvnw ossindex:audit"
                         }
                     }
-                }
+//                }
             }
         }
     }
