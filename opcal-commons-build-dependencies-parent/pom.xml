@@ -89,10 +89,11 @@
 					<updatePomFile>true</updatePomFile>
 					<flattenMode>bom</flattenMode>
 					<pomElements>
-						<parent>flatten</parent>
+						<parent>expand</parent>
 						<pluginManagement>keep</pluginManagement>
 						<distributionManagement>remove</distributionManagement>
 						<profiles>keep</profiles>
+						<build>remove</build>
 					</pomElements>
 				</configuration>
 			</plugin>

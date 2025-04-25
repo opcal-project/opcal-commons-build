@@ -121,9 +121,9 @@
     </licenses>
 
     <scm>
-        <url>scm:git:git@gitlab.com:opcal-project/opcal-commons-build.git</url>
-        <connection>scm:git:git@gitlab.com:opcal-project/opcal-commons-build.git</connection>
-        <developerConnection>scm:git:git@gitlab.com:opcal-project/opcal-commons-build.git</developerConnection>
+        <url>scm:git:git@github.com:opcal-project/opcal-commons-build.git</url>
+        <connection>scm:git:git@github.com:opcal-project/opcal-commons-build.git</connection>
+        <developerConnection>scm:git:git@github.com:opcal-project/opcal-commons-build.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
