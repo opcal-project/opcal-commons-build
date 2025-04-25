@@ -121,9 +121,9 @@
     </licenses>
 
     <scm>
-        <url>scm:git:git@gitlab.com:opcal-project/opcal-commons-build.git</url>
-        <connection>scm:git:git@gitlab.com:opcal-project/opcal-commons-build.git</connection>
-        <developerConnection>scm:git:git@gitlab.com:opcal-project/opcal-commons-build.git</developerConnection>
+        <url>scm:git:git@github.com:opcal-project/opcal-commons-build.git</url>
+        <connection>scm:git:git@github.com:opcal-project/opcal-commons-build.git</connection>
+        <developerConnection>scm:git:git@github.com:opcal-project/opcal-commons-build.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
@@ -202,16 +202,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.sonatype.central</groupId>
-                    <artifactId>central-publishing-maven-plugin</artifactId>
-                    <version>${central-publishing-maven-plugin.version}</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <publishingServerId>central</publishingServerId>
-                        <autoPublish>true</autoPublish>
-                    </configuration>
-                </plugin>
-                <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>flatten-maven-plugin</artifactId>
                     <version>${flatten-maven-plugin.version}</version>
@@ -220,9 +210,11 @@
                         <updatePomFile>true</updatePomFile>
                         <flattenMode>bom</flattenMode>
                         <pomElements>
-                            <parent>expand</parent>
+                            <parent>flatten</parent>
+                            <properties>remove</properties>
                             <distributionManagement>remove</distributionManagement>
                             <repositories>remove</repositories>
+                            <build>remove</build>
                         </pomElements>
                     </configuration>
                     <executions>
@@ -575,6 +567,12 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${central-publishing-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -17,14 +17,38 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.sonatype.central</groupId>
-					<artifactId>central-publishing-maven-plugin</artifactId>
-					<version>${central-publishing-maven-plugin.version}</version>
-					<extensions>true</extensions>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>flatten-maven-plugin</artifactId>
+					<version>${flatten-maven-plugin.version}</version>
+					<inherited>true</inherited>
 					<configuration>
-						<publishingServerId>central</publishingServerId>
-						<autoPublish>true</autoPublish>
+						<updatePomFile>true</updatePomFile>
+						<flattenMode>bom</flattenMode>
+						<pomElements>
+							<parent>flatten</parent>
+							<dependencyManagement>extended_interpolate</dependencyManagement>
+							<properties>remove</properties>
+							<distributionManagement>remove</distributionManagement>
+							<repositories>remove</repositories>
+							<build>remove</build>
+						</pomElements>
 					</configuration>
+					<executions>
+						<execution>
+							<id>flatten</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>flatten</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>flatten.clean</id>
+							<phase>clean</phase>
+							<goals>
+								<goal>clean</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -51,6 +75,12 @@
 			<plugin>
 				<groupId>org.sonatype.central</groupId>
 				<artifactId>central-publishing-maven-plugin</artifactId>
+				<version>${central-publishing-maven-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<publishingServerId>central</publishingServerId>
+					<autoPublish>true</autoPublish>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -63,6 +93,7 @@
 						<pluginManagement>keep</pluginManagement>
 						<distributionManagement>remove</distributionManagement>
 						<profiles>keep</profiles>
+						<build>remove</build>
 					</pomElements>
 				</configuration>
 			</plugin>
