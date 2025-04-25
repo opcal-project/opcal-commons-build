@@ -17,6 +17,40 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>flatten-maven-plugin</artifactId>
+					<version>${flatten-maven-plugin.version}</version>
+					<inherited>true</inherited>
+					<configuration>
+						<updatePomFile>true</updatePomFile>
+						<flattenMode>bom</flattenMode>
+						<pomElements>
+							<parent>flatten</parent>
+							<dependencyManagement>extended_interpolate</dependencyManagement>
+							<properties>remove</properties>
+							<distributionManagement>remove</distributionManagement>
+							<repositories>remove</repositories>
+							<build>remove</build>
+						</pomElements>
+					</configuration>
+					<executions>
+						<execution>
+							<id>flatten</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>flatten</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>flatten.clean</id>
+							<phase>clean</phase>
+							<goals>
+								<goal>clean</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
 					<version>${maven-enforcer-plugin.version}</version>
@@ -55,7 +89,7 @@
 					<updatePomFile>true</updatePomFile>
 					<flattenMode>bom</flattenMode>
 					<pomElements>
-						<parent>expand</parent>
+						<parent>flatten</parent>
 						<pluginManagement>keep</pluginManagement>
 						<distributionManagement>remove</distributionManagement>
 						<profiles>keep</profiles>
