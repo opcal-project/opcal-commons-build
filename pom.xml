@@ -490,7 +490,7 @@
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>${versions-maven-plugin.version}</version>
                     <configuration>
-                        <rulesUri>file://${basedir}/ci/maven/rules.xml</rulesUri>
+                        <rulesUri>file://${session.executionRootDirectory}/ci/maven/rules.xml</rulesUri>
                     </configuration>
                 </plugin>
                 <plugin>
