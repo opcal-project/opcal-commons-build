@@ -199,17 +199,6 @@
                     <artifactId>flatten-maven-plugin</artifactId>
                     <version>${flatten-maven-plugin.version}</version>
                     <inherited>true</inherited>
-                    <configuration>
-                        <updatePomFile>true</updatePomFile>
-                        <flattenMode>bom</flattenMode>
-                        <pomElements>
-                            <parent>flatten</parent>
-                            <properties>remove</properties>
-                            <distributionManagement>remove</distributionManagement>
-                            <repositories>remove</repositories>
-                            <build>remove</build>
-                        </pomElements>
-                    </configuration>
                     <executions>
                         <execution>
                             <id>flatten</id>
