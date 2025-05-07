@@ -496,9 +496,6 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>${versions-maven-plugin.version}</version>
-                    <configuration>
-                        <rulesUri>file://${session.executionRootDirectory}/ci/maven/rules.xml</rulesUri>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -577,6 +574,9 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
+                <configuration>
+                    <rulesUri>file://${session.executionRootDirectory}/ci/maven/rules.xml</rulesUri>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
