@@ -70,7 +70,7 @@
         <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
 
         <nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
-        <puppycrawl-tools-checkstyle.version>10.24.0</puppycrawl-tools-checkstyle.version>
+        <puppycrawl-tools-checkstyle.version>10.25.0</puppycrawl-tools-checkstyle.version>
         <spring-javaformat-checkstyle.version>0.0.45</spring-javaformat-checkstyle.version>
         <spring-javaformat.version>0.0.45</spring-javaformat.version>
         <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
