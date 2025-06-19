@@ -21,7 +21,7 @@
         <java.version>17</java.version>
 
         <!-- dependency version -->
-        <spring-boot.version>3.5.1-SNAPSHOT</spring-boot.version>
+        <spring-boot.version>3.5.2</spring-boot.version>
         <jakarta-annotation-api.version>2.1.1</jakarta-annotation-api.version>
         <jakarta-cdi-api.version>4.0.1</jakarta-cdi-api.version>
 
