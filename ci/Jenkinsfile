@@ -15,7 +15,7 @@ pipeline {
 
     environment {
         MAVEN_CLI_OPTS = "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
-        JAVA_HOME = "${JAVA17_HOME}"
+        JAVA_HOME = tool name: 'temurin-17_linux', type: 'jdk'
         PATH = "${JAVA_HOME}/bin:${PATH}"
     }
 
