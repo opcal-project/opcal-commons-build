@@ -14,7 +14,7 @@ pipeline {
     }
 
     environment {
-        MAVEN_CLI_OPTS = "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
+        MAVEN_CLI_OPTS = "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true -s settings.xml"
         JAVA_HOME = tool name: 'temurin-17_linux', type: 'jdk'
         PATH = "${JAVA_HOME}/bin:${PATH}"
     }
@@ -59,12 +59,12 @@ pipeline {
                         }
                         if (env.CHANGE_URL == null) {
                             // non-PR build
-                            sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} ${env.MAVEN_CLI_DEBUG} deploy -s settings.xml"
+                            sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} ${env.MAVEN_CLI_DEBUG} deploy"
                         } else {
                             // PR build
                             sh "./mvnw -U clean ${env.MAVEN_CLI_OPTS} ${env.MAVEN_CLI_DEBUG} test -Dgpg.skip=true"
                         }
-                        sh "./mvnw ossindex:audit"
+                        sh "./mvnw ${env.MAVEN_CLI_OPTS} ossindex:audit"
                     }
                 }
             }

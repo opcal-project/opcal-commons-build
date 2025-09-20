@@ -41,10 +41,10 @@
         <maven-checkstyle-plugin.includeTestSourceDirectory>true</maven-checkstyle-plugin.includeTestSourceDirectory>
         <checkstyle.branch>main</checkstyle.branch>
         <checkstyle.suppressions.file>
-            https://gitlab.com/opcal-project/opcal-commons-build/-/raw/${checkstyle.branch}/opcal-commons-build-tools/src/main/checkstyle/checkstyle-suppressions.xml
+            https://raw.githubusercontent.com/opcal-project/opcal-commons-build/refs/heads/${checkstyle.branch}/opcal-commons-build-tools/src/main/checkstyle/checkstyle-suppressions.xml
         </checkstyle.suppressions.file>
         <checkstyle.nohttp.file>
-            https://gitlab.com/opcal-project/opcal-commons-build/-/raw/${checkstyle.branch}/opcal-commons-build-tools/src/main/checkstyle/nohttp-checkstyle.xml
+            https://raw.githubusercontent.com/opcal-project/opcal-commons-build/refs/heads/${checkstyle.branch}/opcal-commons-build-tools/src/main/checkstyle/nohttp-checkstyle.xml
         </checkstyle.nohttp.file>
         <checkstyle.additional.suppressions.file>
             ${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle-suppressions.xml
