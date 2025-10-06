@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>xyz.opcal.build</groupId>
     <artifactId>opcal-commons-build</artifactId>
-    <version>3.5.7-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>opcal project parent</name>
 
@@ -21,9 +21,9 @@
         <java.version>17</java.version>
 
         <!-- dependency version -->
-        <spring-boot.version>3.5.7-SNAPSHOT</spring-boot.version>
-        <jakarta-annotation-api.version>2.1.1</jakarta-annotation-api.version>
-        <jakarta-cdi-api.version>4.0.1</jakarta-cdi-api.version>
+        <spring-boot.version>4.0.0-M3</spring-boot.version>
+        <jakarta-annotation-api.version>3.0.0</jakarta-annotation-api.version>
+        <jakarta-cdi-api.version>4.1.0</jakarta-cdi-api.version>
 
         <!-- delimiter that doesn't clash with Spring ${} placeholders -->
         <resource.delimiter>@</resource.delimiter>
