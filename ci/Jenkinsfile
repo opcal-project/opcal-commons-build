@@ -48,7 +48,8 @@ pipeline {
                 withCredentials([
                         file(credentialsId: 'GPG_PRI', variable: 'GPG_PRI'),
                         string(credentialsId: 'GPG_PASSPHRASE', variable: 'MAVEN_GPG_PASSPHRASE'),
-                        usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U')
+                        usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U'),
+                        usernamePassword(credentialsId: 'ossindex-token', passwordVariable: 'OSSINDEX_P', usernameVariable: 'OSSINDEX_U')
                 ]) {
                     script {
                         sh "gpg --allow-secret-key-import --batch --import \$GPG_PRI"
@@ -64,12 +65,7 @@ pipeline {
                             // PR build
                             sh "./mvnw -U clean ${env.MAVEN_CLI_DEBUG} test -Dgpg.skip=true"
                         }
-                        sh "./mvnw ossindex:audit"
-                        withSonarQubeEnv {
-                            sh """
-                                ./mvnw sonar:sonar -Dsonar.projectKey=xyz.opcal.build:opcal-commons-build -Dsonar.projectName='opcal-commons-build'
-                            """
-                        }
+                        sh "./mvnw ossindex:audit-aggregate"
                     }
                 }
             }
