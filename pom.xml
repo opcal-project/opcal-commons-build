@@ -111,7 +111,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <url>https://gitlab.com/opcal-project/opcal-commons-build</url>
+    <url>https://github.com/opcal-project/opcal-commons-build</url>
     <licenses>
         <license>
             <name>Apache v2</name>
@@ -545,6 +545,7 @@
                     <artifactId>ossindex-maven-plugin</artifactId>
                     <version>${ossindex-maven-plugin.version}</version>
                     <configuration>
+                        <authId>ossindex</authId>
                         <reportFile>${project.build.directory}/ossindex-report.json</reportFile>
                         <fail>false</fail>
                     </configuration>
