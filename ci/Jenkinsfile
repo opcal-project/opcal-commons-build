@@ -70,8 +70,8 @@ pipeline {
                 }
                 withSonarQubeEnv('sqscan') {
                     sh """
-                                ./mvnw sonar:sonar -Dsonar.projectKey=xyz.opcal.build:opcal-commons-build -Dsonar.projectName='opcal-commons-build'
-                            """
+                        ./mvnw sonar:sonar -Dsonar.projectKey=xyz.opcal.build:opcal-commons-build -Dsonar.projectName='opcal-commons-build'
+                    """
                 }
             }
         }
