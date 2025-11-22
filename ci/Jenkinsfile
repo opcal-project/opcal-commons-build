@@ -65,6 +65,11 @@ pipeline {
                             sh "./mvnw -U clean ${env.MAVEN_CLI_DEBUG} test -Dgpg.skip=true"
                         }
                         sh "./mvnw ossindex:audit"
+                        withSonarQubeEnv {
+                            sh """
+                                ./mvnw sonar:sonar -Dsonar.projectKey=xyz.opcal.build:opcal-commons-build -Dsonar.projectName='opcal-commons-build'
+                            """
+                        }
                     }
                 }
             }
