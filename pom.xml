@@ -73,7 +73,7 @@
         <puppycrawl-tools-checkstyle.version>12.1.2</puppycrawl-tools-checkstyle.version>
         <spring-javaformat-checkstyle.version>0.0.47</spring-javaformat-checkstyle.version>
         <spring-javaformat.version>0.0.47</spring-javaformat.version>
-        <versions-maven-plugin.version>2.19.1</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.20.0</versions-maven-plugin.version>
         <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <exec-maven-plugin.version>3.6.2</exec-maven-plugin.version>
