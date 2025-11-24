@@ -79,6 +79,7 @@
         <exec-maven-plugin.version>3.6.2</exec-maven-plugin.version>
         <properties-maven-plugin.version>1.2.1</properties-maven-plugin.version>
         <ossindex-maven-plugin.version>3.2.0</ossindex-maven-plugin.version>
+        <sonar-maven-plugin.version>5.3.0.6276</sonar-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -549,6 +550,11 @@
                         <reportFile>${project.build.directory}/ossindex-report.json</reportFile>
                         <fail>false</fail>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
