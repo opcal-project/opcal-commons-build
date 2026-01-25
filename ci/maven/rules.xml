@@ -13,5 +13,23 @@
                 <ignoreVersion type="range">[4,)</ignoreVersion><!-- keep version matching maven 3-->
             </ignoreVersions>
         </rule>
+        <rule groupId="io.spring.nohttp" artifactId="nohttp-checkstyle" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.+-SNAPSHOT</ignoreVersion>
+                <ignoreVersion type="regex">(.+-SNAPSHOT|.+-M\d)</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="io.spring.javaformat" artifactId="spring-javaformat-maven-plugin" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.+-SNAPSHOT</ignoreVersion>
+                <ignoreVersion type="regex">(.+-SNAPSHOT|.+-M\d)</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="io.spring.javaformat" artifactId="spring-javaformat-checkstyle" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.+-SNAPSHOT</ignoreVersion>
+                <ignoreVersion type="regex">(.+-SNAPSHOT|.+-M\d)</ignoreVersion>
+            </ignoreVersions>
+        </rule>
     </rules>
 </ruleset>
