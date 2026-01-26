@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>xyz.opcal.build</groupId>
     <artifactId>opcal-commons-build</artifactId>
-    <version>3.5.11-SNAPSHOT</version>
+    <version>3.5.10.1</version>
     <packaging>pom</packaging>
     <name>opcal project parent</name>
 
@@ -21,7 +21,7 @@
         <java.version>17</java.version>
 
         <!-- dependency version -->
-        <spring-boot.version>3.5.11-SNAPSHOT</spring-boot.version>
+        <spring-boot.version>3.5.10</spring-boot.version>
         <jakarta-annotation-api.version>2.1.1</jakarta-annotation-api.version>
         <jakarta-cdi-api.version>4.0.1</jakarta-cdi-api.version>
 
@@ -72,7 +72,7 @@
         <puppycrawl-tools-checkstyle.version>13.0.0</puppycrawl-tools-checkstyle.version>
         <spring-javaformat-checkstyle.version>0.0.47</spring-javaformat-checkstyle.version>
         <spring-javaformat.version>0.0.47</spring-javaformat.version>
-        <versions-maven-plugin.version>2.21.0</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.20.1</versions-maven-plugin.version>
         <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <exec-maven-plugin.version>3.6.3</exec-maven-plugin.version>
