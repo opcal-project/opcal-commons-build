@@ -81,10 +81,12 @@ pipeline {
             cleanWs()
         }
         failure {
-            env.AI_EXPLAIN = explainError(
+            script {
+                env.AI_EXPLAIN = explainError(
                     maxLines: 10000,
                     logPattern: '(?i)(error|failed|exception)'
-            )
+                )
+            }
             withCredentials([
                     string(credentialsId: 'ALERT_MAIL', variable: 'SEND_TO')
             ]) {
