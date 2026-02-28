@@ -404,14 +404,9 @@
                                     checkstyle.additional.suppressions.file=${checkstyle.additional.suppressions.file}
                                 </propertyExpansion>
                                 <consoleOutput>true</consoleOutput>
-                                <includeTestSourceDirectory>
-                                    ${maven-checkstyle-plugin.includeTestSourceDirectory}
-                                </includeTestSourceDirectory>
-                                <failsOnError>${maven-checkstyle-plugin.failsOnError}
-                                </failsOnError>
-                                <failOnViolation>
-                                    ${maven-checkstyle-plugin.failOnViolation}
-                                </failOnViolation>
+                                <includeTestSourceDirectory>${maven-checkstyle-plugin.includeTestSourceDirectory}</includeTestSourceDirectory>
+                                <failsOnError>${maven-checkstyle-plugin.failsOnError}</failsOnError>
+                                <failOnViolation>${maven-checkstyle-plugin.failOnViolation}</failOnViolation>
                             </configuration>
                             <goals>
                                 <goal>check</goal>
