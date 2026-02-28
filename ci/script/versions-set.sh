@@ -13,4 +13,5 @@ echo "${VERSION}"
 "${ROOT_PATH}"/mvnw -U clean compile >> /dev/null 2>&1
 
 "${ROOT_PATH}"/mvnw versions:set -DnewVersion="${VERSION}"
+"${ROOT_PATH}"/mvnw versions:set-property -Dproperty=opcal.build.version -DnewVersion="${VERSION}" >> /dev/null 2>&1
 "${ROOT_PATH}"/mvnw versions:commit
