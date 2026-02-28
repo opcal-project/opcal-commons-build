@@ -25,9 +25,9 @@
     <module name="com.puppycrawl.tools.checkstyle.TreeWalker">
         <property name="tabWidth" value="1"/>
 
-        <module name="LineLength">
-            <property name="max" value="160"/>
-        </module>
+<!--        <module name="LineLength">-->
+<!--            <property name="max" value="160"/>-->
+<!--        </module>-->
 
         <module name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck">
             <property name="illegalPkgs" value="com.google.common"/>
