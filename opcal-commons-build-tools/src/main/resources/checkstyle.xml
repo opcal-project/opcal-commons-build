@@ -118,7 +118,7 @@
             <property name="authorFormat" value=".+\s.+"/>
         </module>
         <module name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck">
-            <property name="scope" value="public"/>
+            <property name="accessModifiers" value="public"/>
         </module>
         <module name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
         <module name="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck"/>
@@ -164,7 +164,7 @@
         <module name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck">
             <property name="maximum" value="0"/>
             <property name="format"
-                      value="org\.junit\.(Assert|jupiter\.api\.Assertions)\.assert"/>
+                      value="org\.junit\.(Assert|jupiter\.api\.Assertions)"/>
             <property name="message"
                       value="Please use AssertJ imports."/>
             <property name="ignoreComments" value="true"/>
@@ -187,5 +187,21 @@
         <module name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck"/>
         <module name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
         <module name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+        <module name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck">
+            <property name="id" value="toLowerCaseWithoutLocale"/>
+            <property name="format" value="\.toLowerCase\(\)"/>
+            <property name="maximum" value="0"/>
+            <property name="message"
+                      value="String.toLowerCase() should be String.toLowerCase(Locale.ROOT)"/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+        <module name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck">
+            <property name="id" value="toUpperCaseWithoutLocale"/>
+            <property name="format" value="\.toUpperCase\(\)"/>
+            <property name="maximum" value="0"/>
+            <property name="message"
+                      value="String.toUpperCase() should be String.toUpperCase(Locale.ROOT)"/>
+            <property name="ignoreComments" value="true"/>
+        </module>
     </module>
 </module>
