@@ -36,7 +36,7 @@ version-registers:
   - property-name: maven-enforcer-plugin.version
     update-policy: LATEST
   - property-name: puppycrawl-tools-checkstyle.version
-    update-policy: LATEST
+    update-policy: INCREMENTAL
   - property-name: versions-maven-plugin.version
     update-policy: LATEST
     enable: false
