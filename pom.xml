@@ -392,7 +392,7 @@
                     <executions>
                         <execution>
                             <id>checkstyle-validation</id>
-                            <phase>validate</phase>
+                            <phase>process-test-classes</phase>
                             <inherited>true</inherited>
                             <configuration>
                                 <skip>${disable.checks}</skip>
@@ -414,7 +414,7 @@
                         </execution>
                         <execution>
                             <id>no-http-checkstyle-validation</id>
-                            <phase>validate</phase>
+                            <phase>process-test-classes</phase>
                             <inherited>true</inherited>
                             <configuration>
                                 <skip>${disable.nohttp.checks}</skip>
