@@ -203,5 +203,7 @@
                       value="String.toUpperCase() should be String.toUpperCase(Locale.ROOT)"/>
             <property name="ignoreComments" value="true"/>
         </module>
+        <module name="SuppressWarningsHolder"/>
     </module>
+    <module name="SuppressWarningsFilter"/>
 </module>
