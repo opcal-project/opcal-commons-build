@@ -68,10 +68,7 @@
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
         <maven-enforcer-plugin.version>3.6.2</maven-enforcer-plugin.version>
 
-        <nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
         <puppycrawl-tools-checkstyle.version>13.2.0</puppycrawl-tools-checkstyle.version>
-        <spring-javaformat-checkstyle.version>0.0.47</spring-javaformat-checkstyle.version>
-        <spring-javaformat.version>0.0.47</spring-javaformat.version>
         <versions-maven-plugin.version>2.20.1</versions-maven-plugin.version>
         <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
@@ -347,23 +344,6 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>io.spring.javaformat</groupId>
-                    <artifactId>spring-javaformat-maven-plugin</artifactId>
-                    <version>${spring-javaformat.version}</version>
-                    <executions>
-                        <execution>
-                            <phase>validate</phase>
-                            <configuration>
-                                <skip>${disable.checks}</skip>
-                            </configuration>
-                            <goals>
-                                <goal>apply</goal>
-                                <goal>validate</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>${maven-checkstyle-plugin.version}</version>
@@ -374,19 +354,9 @@
                             <version>${puppycrawl-tools-checkstyle.version}</version>
                         </dependency>
                         <dependency>
-                            <groupId>io.spring.javaformat</groupId>
-                            <artifactId>spring-javaformat-checkstyle</artifactId>
-                            <version>${spring-javaformat-checkstyle.version}</version>
-                        </dependency>
-                        <dependency>
                             <groupId>xyz.opcal.build</groupId>
                             <artifactId>opcal-commons-build-tools</artifactId>
                             <version>${opcal.build.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>io.spring.nohttp</groupId>
-                            <artifactId>nohttp-checkstyle</artifactId>
-                            <version>${nohttp-checkstyle.version}</version>
                         </dependency>
                     </dependencies>
                     <executions>
@@ -407,21 +377,6 @@
                                 <includeTestSourceDirectory>${maven-checkstyle-plugin.includeTestSourceDirectory}</includeTestSourceDirectory>
                                 <failsOnError>${maven-checkstyle-plugin.failsOnError}</failsOnError>
                                 <failOnViolation>${maven-checkstyle-plugin.failOnViolation}</failOnViolation>
-                            </configuration>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>no-http-checkstyle-validation</id>
-                            <phase>validate</phase>
-                            <inherited>true</inherited>
-                            <configuration>
-                                <skip>${disable.nohttp.checks}</skip>
-                                <configLocation>${checkstyle.nohttp.file}</configLocation>
-                                <includes>**/*</includes>
-                                <excludes>**/.idea/**/*,**/.git/**/*,**/target/**/*,**/*.log</excludes>
-                                <sourceDirectories>./</sourceDirectories>
                             </configuration>
                             <goals>
                                 <goal>check</goal>
