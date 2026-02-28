@@ -55,7 +55,7 @@
         </module>
         <module name="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
         <module name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck">
-            <property name="option" value="alone"/>
+            <property name="option" value="same"/>
         </module>
         <module name="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
         <module name="com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck"/>
