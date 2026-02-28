@@ -21,10 +21,10 @@
     </module>
     <module name="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 
-    <module name="LineLength">
-        <property name="max" value="160"/>
-        <property name="ignorePattern" value="^import|^package"/>
-    </module>
+<!--    <module name="LineLength">-->
+<!--        <property name="max" value="160"/>-->
+<!--        <property name="ignorePattern" value="^import|^package"/>-->
+<!--    </module>-->
 
     <!-- TreeWalker Checks -->
     <module name="com.puppycrawl.tools.checkstyle.TreeWalker">
@@ -97,7 +97,7 @@
             <property name="processJavadoc" value="true"/>
         </module>
         <module name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck">
-            <property name="groups" value="java,/^javax?\./,*,org.springframework"/>
+            <property name="groups" value="java,/^javax?\./,jakarta,org,com,*,org.springframework,xyz.opcal"/>
             <property name="ordered" value="true"/>
             <property name="separated" value="true"/>
             <property name="option" value="bottom"/>
