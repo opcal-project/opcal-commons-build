@@ -19,6 +19,7 @@
 
     <properties>
         <java.version>17</java.version>
+        <opcal.build.version>3.5.12-SNAPSHOT</opcal.build.version>
 
         <!-- dependency version -->
         <spring-boot.version>3.5.12-SNAPSHOT</spring-boot.version>
@@ -31,20 +32,16 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.release>${java.version}</maven.compiler.release>
 
-
         <javadoc.failOnError>false</javadoc.failOnError>
         <javadoc.failOnWarnings>false</javadoc.failOnWarnings>
         <disable.checks>false</disable.checks>
         <maven-checkstyle-plugin.failsOnError>true</maven-checkstyle-plugin.failsOnError>
         <maven-checkstyle-plugin.failOnViolation>true</maven-checkstyle-plugin.failOnViolation>
         <maven-checkstyle-plugin.includeTestSourceDirectory>true</maven-checkstyle-plugin.includeTestSourceDirectory>
-        <checkstyle.branch>main</checkstyle.branch>
+        <checkstyle.branch>3.5.x</checkstyle.branch>
         <checkstyle.suppressions.file>
             https://raw.githubusercontent.com/opcal-project/opcal-commons-build/refs/heads/${checkstyle.branch}/opcal-commons-build-tools/src/main/checkstyle/checkstyle-suppressions.xml
         </checkstyle.suppressions.file>
-        <checkstyle.nohttp.file>
-            https://raw.githubusercontent.com/opcal-project/opcal-commons-build/refs/heads/${checkstyle.branch}/opcal-commons-build-tools/src/main/checkstyle/nohttp-checkstyle.xml
-        </checkstyle.nohttp.file>
         <checkstyle.additional.suppressions.file>
             ${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle-suppressions.xml
         </checkstyle.additional.suppressions.file>
@@ -68,10 +65,7 @@
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
         <maven-enforcer-plugin.version>3.6.2</maven-enforcer-plugin.version>
 
-        <nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
-        <puppycrawl-tools-checkstyle.version>13.3.0</puppycrawl-tools-checkstyle.version>
-        <spring-javaformat-checkstyle.version>0.0.47</spring-javaformat-checkstyle.version>
-        <spring-javaformat.version>0.0.47</spring-javaformat.version>
+        <puppycrawl-tools-checkstyle.version>12.3.1</puppycrawl-tools-checkstyle.version>
         <versions-maven-plugin.version>2.20.1</versions-maven-plugin.version>
         <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
@@ -347,23 +341,6 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>io.spring.javaformat</groupId>
-                    <artifactId>spring-javaformat-maven-plugin</artifactId>
-                    <version>${spring-javaformat.version}</version>
-                    <executions>
-                        <execution>
-                            <phase>validate</phase>
-                            <configuration>
-                                <skip>${disable.checks}</skip>
-                            </configuration>
-                            <goals>
-                                <goal>apply</goal>
-                                <goal>validate</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>${maven-checkstyle-plugin.version}</version>
@@ -374,19 +351,9 @@
                             <version>${puppycrawl-tools-checkstyle.version}</version>
                         </dependency>
                         <dependency>
-                            <groupId>io.spring.javaformat</groupId>
-                            <artifactId>spring-javaformat-checkstyle</artifactId>
-                            <version>${spring-javaformat-checkstyle.version}</version>
-                        </dependency>
-                        <dependency>
                             <groupId>xyz.opcal.build</groupId>
                             <artifactId>opcal-commons-build-tools</artifactId>
-                            <version>${project.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>io.spring.nohttp</groupId>
-                            <artifactId>nohttp-checkstyle</artifactId>
-                            <version>${nohttp-checkstyle.version}</version>
+                            <version>${opcal.build.version}</version>
                         </dependency>
                     </dependencies>
                     <executions>
@@ -404,29 +371,9 @@
                                     checkstyle.additional.suppressions.file=${checkstyle.additional.suppressions.file}
                                 </propertyExpansion>
                                 <consoleOutput>true</consoleOutput>
-                                <includeTestSourceDirectory>
-                                    ${maven-checkstyle-plugin.includeTestSourceDirectory}
-                                </includeTestSourceDirectory>
-                                <failsOnError>${maven-checkstyle-plugin.failsOnError}
-                                </failsOnError>
-                                <failOnViolation>
-                                    ${maven-checkstyle-plugin.failOnViolation}
-                                </failOnViolation>
-                            </configuration>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>no-http-checkstyle-validation</id>
-                            <phase>validate</phase>
-                            <inherited>true</inherited>
-                            <configuration>
-                                <skip>${disable.nohttp.checks}</skip>
-                                <configLocation>${checkstyle.nohttp.file}</configLocation>
-                                <includes>**/*</includes>
-                                <excludes>**/.idea/**/*,**/.git/**/*,**/target/**/*,**/*.log</excludes>
-                                <sourceDirectories>./</sourceDirectories>
+                                <includeTestSourceDirectory>${maven-checkstyle-plugin.includeTestSourceDirectory}</includeTestSourceDirectory>
+                                <failsOnError>${maven-checkstyle-plugin.failsOnError}</failsOnError>
+                                <failOnViolation>${maven-checkstyle-plugin.failOnViolation}</failOnViolation>
                             </configuration>
                             <goals>
                                 <goal>check</goal>
@@ -635,6 +582,14 @@
         </repository>
     </repositories>
     <pluginRepositories>
+        <pluginRepository>
+            <name>Central Portal Snapshots</name>
+            <id>central-portal-snapshots</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
         <pluginRepository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
