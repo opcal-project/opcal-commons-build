@@ -30,10 +30,6 @@
     <module name="com.puppycrawl.tools.checkstyle.TreeWalker">
         <property name="tabWidth" value="1"/>
 
-        <module name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck">
-            <property name="illegalPkgs" value="com.google.common"/>
-        </module>
-
         <module name="SuppressionCommentFilter">
             <property name="offCommentFormat" value="@checkstyle:off"/>
             <property name="onCommentFormat" value="@checkstyle:on"/>
