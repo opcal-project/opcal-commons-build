@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>xyz.opcal.build</groupId>
     <artifactId>opcal-commons-build</artifactId>
-    <version>3.5.12-SNAPSHOT</version>
+    <version>3.5.12</version>
     <packaging>pom</packaging>
     <name>opcal project parent</name>
 
@@ -19,7 +19,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <opcal.build.version>3.5.12-SNAPSHOT</opcal.build.version>
+        <opcal.build.version>3.5.12</opcal.build.version>
 
         <!-- dependency version -->
         <spring-boot.version>3.5.12</spring-boot.version>
