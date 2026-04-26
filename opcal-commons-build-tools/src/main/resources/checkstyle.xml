@@ -161,7 +161,5 @@
         <module name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck"/>
         <module name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
         <module name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<!--        <module name="SuppressWarningsHolder"/>-->
     </module>
-<!--    <module name="SuppressWarningsFilter"/>-->
 </module>
