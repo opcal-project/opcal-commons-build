@@ -3,6 +3,29 @@
     <option name="INSERT_INNER_CLASS_IMPORTS" value="true" />
     <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="1000" />
     <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="1000" />
+    <option name="IMPORT_LAYOUT_TABLE">
+      <value>
+        <package name="" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="java" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="javax" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="jakarta" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="org" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="com" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="" withSubpackages="true" static="false" module="true" />
+        <emptyLine />
+        <package name="org.springframework" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="xyz.opcal" withSubpackages="true" static="false" />
+      </value>
+    </option>
     <option name="ALIGN_MULTILINE_RECORDS" value="false" />
     <option name="ALIGN_TYPES_IN_MULTI_CATCH" value="false" />
     <option name="JD_ALIGN_PARAM_COMMENTS" value="false" />
@@ -11,33 +34,9 @@
     <option name="JD_DO_NOT_WRAP_ONE_LINE_COMMENTS" value="true" />
     <option name="JD_PARAM_DESCRIPTION_ON_NEW_LINE" value="true" />
     <option name="JD_INDENT_ON_CONTINUATION" value="true" />
-    <option name="IMPORT_LAYOUT_TABLE">
-      <value>
-        <package name="java" withSubpackages="true" static="false"/>
-        <emptyLine/>
-        <package name="javax" withSubpackages="true" static="false"/>
-        <emptyLine/>
-        <package name="jakarta" withSubpackages="true" static="false"/>
-        <emptyLine/>
-        <package name="org" withSubpackages="true" static="false"/>
-        <emptyLine/>
-        <package name="com" withSubpackages="true" static="false"/>
-        <emptyLine/>
-        <package name="" withSubpackages="true" static="false"/>
-        <emptyLine/>
-        <package name="" withSubpackages="true" static="false" module="true" />
-        <emptyLine />
-        <package name="org.springframework" withSubpackages="true" static="false"/>
-        <emptyLine/>
-        <package name="xyz.opcal" withSubpackages="true" static="false"/>
-        <emptyLine/>
-        <package name="" withSubpackages="true" static="true"/>
-      </value>
-    </option>
   </JavaCodeStyleSettings>
   <codeStyleSettings language="JAVA">
     <option name="RIGHT_MARGIN" value="160" />
-    <option name="KEEP_LINE_BREAKS" value="true" />
     <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
     <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE" value="false" />
     <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
