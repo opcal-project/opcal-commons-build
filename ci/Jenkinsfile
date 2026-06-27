@@ -50,7 +50,7 @@ pipeline {
                         string(credentialsId: 'GPG_PASSPHRASE', variable: 'MAVEN_GPG_PASSPHRASE'),
                         usernamePassword(credentialsId: 'opcal-ossrh', passwordVariable: 'OSSRH_P', usernameVariable: 'OSSRH_U'),
                         usernamePassword(credentialsId: 'ossindex-token', passwordVariable: 'OSSINDEX_P', usernameVariable: 'OSSINDEX_U'),
-                        usernamePassword(credentialsId: 'opcal-project-ghcr', passwordVariable: 'gh_name', usernameVariable: 'gh_token')
+                        usernamePassword(credentialsId: 'opcal-project-ghcr', passwordVariable: 'gh_token', usernameVariable: 'gh_name')
                 ]) {
                     script {
                         sh "gpg --allow-secret-key-import --batch --import \$GPG_PRI"
