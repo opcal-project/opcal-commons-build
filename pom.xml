@@ -550,7 +550,7 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>github</id>
+            <id>opcal-github</id>
             <name>GitHub</name>
             <url>https://maven.pkg.github.com/opcal-project/opcal-commons-build</url>
         </snapshotRepository>
@@ -559,12 +559,9 @@
 
     <repositories>
         <repository>
-            <name>Opcal GitHub Snapshots</name>
-            <id>opcal-github-snapshots</id>
+            <name>Opcal GitHub</name>
+            <id>opcal-github</id>
             <url>https://maven.pkg.github.com/opcal-project/*</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
         </repository>
         <repository>
             <name>Central Portal Snapshots</name>

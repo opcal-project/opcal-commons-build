@@ -13,7 +13,7 @@
             <password>${env.OSSINDEX_P}</password>
         </server>
 		<server>
-			<id>github</id>
+			<id>opcal-github</id>
 			<username>${env.gh_name}</username>
 			<password>${env.gh_token}</password>
 		</server>
