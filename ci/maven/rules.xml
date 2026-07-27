@@ -13,5 +13,10 @@
                 <ignoreVersion type="range">[4,)</ignoreVersion><!-- keep version matching maven 3-->
             </ignoreVersions>
         </rule>
+        <rule groupId="org.jacoco" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.*-SNAPSHOT</ignoreVersion>
+            </ignoreVersions>
+        </rule>
     </rules>
 </ruleset>
